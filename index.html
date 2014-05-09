@@ -21,27 +21,44 @@
 	<body ng-controller="AppController">
 		<div class="app_section">
 			<div class="sidebar list" ng-controller="MatterListController">
+				<label>
+					<input
+						type="checkbox"
+						ng-model="selectAll"
+						>
+					Select All
+				</label>
 				<h1
-					ng-repeat-start="clientData in matters | filter:clientFilterText"
+					ng-repeat-start="client in clients | filter:clientFilterText"
 					>
 
-					{{ clientData.client_name }}</h1>
+					{{ client.client_name }}</h1>
 				<div
 					class="item matter"
-
-					ng-repeat="matter in clientData.matters | filter:{status:stateFilter} | filter:keywordFilterText"
+					ng-click="state.activeMatter = matter"
+					ng-repeat="matter in client.matters | filter:{status:stateFilter} | filter:keywordFilterText"
 					>
 
 					{{ matter.number }}
 					<p class="closed" ng-if="matter.status == 'closed'">Closed</p>
 					<p>{{ matter.description }}</p>
-					<input type="checkbox">
+					<input type="checkbox" ng-model="matter.selected" ng-click="$event.stopPropagation()">
 					<a class="actions" href="">^</a>
 				</div>
 				<div class="empty" ng-repeat-end>No Matches</div>
 			</div>
 			<div class="matter_view">
-				Matter <strike>Closed</strike>
+				<h1>
+					{{ state.activeMatter.number }}
+					<strike
+						ng-if="state.activeMatter.status == 'closed'"
+						>
+						Closed
+					</strike>
+				</h1>
+				<p>
+					{{ state.activeMatter.description }}
+				</p>
 			</div>
 		</div>
 

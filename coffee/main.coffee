@@ -17,5 +17,18 @@ angularModules = [
         else
             $scope.stateFilter = ''
 
+    $scope.state =
+        activeMatter: null
+
+
 @MatterListController = ($scope) ->
-    $scope.matters = _seedData
+    $scope.clients = _seedData
+    $scope.selectAll = no
+
+    $scope.$watch 'selectAll', (value) ->
+        setSelectAllState value
+
+    setSelectAllState = (state) ->
+        for client in $scope.clients
+            for matter in client.matters
+                matter.selected = state

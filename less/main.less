@@ -102,6 +102,10 @@ body {
 		.size_to_box;
 
 		padding: @inner_gutter;
+
+		strike {
+			.closed_style;
+		}
 	}
 
 	.sidebar ~ .matter_view {
@@ -205,8 +209,7 @@ body {
 			line-height: normal;
 
 			&.closed {
-				color: @ma_red;
-				font-weight: 600;
+				.closed_style;
 			}
 		}
 	}

@@ -11,17 +11,47 @@
     $scope.stateFilter = '';
     $scope.clientFilterText = '';
     $scope.keywordFilterText = '';
-    return $scope.$watch('hideClosed', function(value) {
+    $scope.$watch('hideClosed', function(value) {
       if (value === true) {
         return $scope.stateFilter = 'open';
       } else {
         return $scope.stateFilter = '';
       }
     });
+    return $scope.state = {
+      activeMatter: null
+    };
   };
 
   this.MatterListController = function($scope) {
-    return $scope.matters = _seedData;
+    var setSelectAllState;
+
+    $scope.clients = _seedData;
+    $scope.selectAll = false;
+    $scope.$watch('selectAll', function(value) {
+      return setSelectAllState(value);
+    });
+    return setSelectAllState = function(state) {
+      var client, matter, _i, _len, _ref, _results;
+
+      _ref = $scope.clients;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        client = _ref[_i];
+        _results.push((function() {
+          var _j, _len1, _ref1, _results1;
+
+          _ref1 = client.matters;
+          _results1 = [];
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            matter = _ref1[_j];
+            _results1.push(matter.selected = state);
+          }
+          return _results1;
+        })());
+      }
+      return _results;
+    };
   };
 
 }).call(this);
