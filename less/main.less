@@ -65,7 +65,18 @@ body {
 	}
 
 	input {
-		line-height: 20px;
+		margin-left: @inner_gutter;
+
+		padding: 10px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+
+		line-height: 22px;
+
+		border-radius: 11px;
+		box-shadow: inset 1px 1px 2px rgba(0,0,0,0.7);
+		border: none;
+		outline: none;
 	}
 }
 
@@ -118,6 +129,17 @@ body {
 .list {
 	overflow-y: scroll;
 
+	label {
+		display: block;
+		line-height: 30px;
+
+		input {
+			margin: 0px;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+	}
+
 	h1 {
 		margin: 0px;
 		padding-top: 5px;
@@ -145,48 +167,50 @@ body {
 
 	.item {
 		@height: 30px;
-		@highlight_color: fade(@near_black, 20%);
+		@highlight_color: fade(@ma_blue, 11%);
 
 		display: block;
 		position: relative;
 
-		padding: 0px;
-		padding-bottom: 3px;
+		padding: 5px;
 		padding-left: @gutter;
 		padding-right: @gutter;
 
 		color: inherit;
 		text-decoration: none;
 		font-weight: 100;
-		line-height: @height;
 
 		border-bottom: solid 1px @grey_lighter;
 
 		cursor: pointer;
 
-		&:after {
-			content: "";
-			float: right;
-			opacity: 0;
-		}
-
 		&:hover {
-			border-color: fade(@highlight_color, 7%);
-			background-color: fade(@highlight_color, 7%);
+			background-color: fade(@highlight_color, 4%);
 		}
 
 		&.active {
-			border-color: @highlight_color;
 			background-color: @highlight_color;
 
 			&:after { opacity: 1; }
+		}
+
+		&.closed {
+			h2 {
+				color: @ma_red;
+				text-decoration: line-through;
+			}
+		}
+
+		h2 {
+			margin: 0px;
+			font-size: 1em;
 		}
 
 		@size: 16px;
 		input, .dropdown {
 			display: block;
 			position: absolute;
-			top: 9px;
+			top: 8px;
 			left: 7px;
 			height: @size;
 
@@ -198,7 +222,7 @@ body {
 		}
 
 		.dropdown {
-			top: @size + 9px;
+			top: @size + 8px;
 			left: 5px;
 			width: @size;
 			height: @size;
@@ -216,11 +240,9 @@ body {
 
 		p {
 			margin: 0px;
-			line-height: normal;
-
-			&.closed {
-				.closed_style;
-			}
+			text-overflow:ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
 		}
 	}
 }
