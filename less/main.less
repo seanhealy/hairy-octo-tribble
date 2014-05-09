@@ -84,7 +84,7 @@ body {
 
 		.size_to_box;
 
-		border-right: solid 1px darken(@near_white, 5%);
+		border-right: solid 1px @grey_light;
 
 		background-color: @near_white;
 		background-size: 4px;
@@ -110,14 +110,31 @@ body {
 }
 
 .list {
+	overflow: auto;
+
 	h1 {
 		margin: 0px;
-		margin-top: @inner_gutter;
-		margin-left: @inner_gutter;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		padding-left: @inner_gutter;
 
 		font-size: 1.2em;
 
 		.font_title;
+
+		background-color: @grey_lighter;
+
+		& + .empty {
+			display: block;
+			line-height: 30px;
+			text-align: center;
+
+			opacity: 0.5;
+		}
+	}
+
+	.empty {
+		display: none;
 	}
 
 	.item {
@@ -126,22 +143,20 @@ body {
 
 		display: block;
 		position: relative;
-		height: @height;
 
 		padding: 0px;
-		padding-left: @inner_gutter;
-		padding-right: @inner_gutter;
-
-		margin-top: 2px;
-		margin-bottom: 2px;
+		padding-bottom: 3px;
+		padding-left: @gutter;
+		padding-right: @gutter;
 
 		color: inherit;
 		text-decoration: none;
 		font-weight: 100;
 		line-height: @height;
 
-		border-top: solid 1px transparent;
-		border-bottom: solid 1px transparent;
+		border-bottom: solid 1px @grey_lighter;
+
+		cursor: pointer;
 
 		&:after {
 			content: "";
@@ -159,6 +174,40 @@ body {
 			background-color: @highlight_color;
 
 			&:after { opacity: 1; }
+		}
+
+		@size: @height - 10;
+		input, a {
+			position: absolute;
+			top: 5px;
+			left: @inner_gutter;
+			height: @size;
+
+			line-height: @size;
+
+			margin: 0px;
+			padding: 0px;
+
+		}
+
+		a {
+			left: auto;
+			right: @inner_gutter;
+			width: @size;
+
+			text-decoration: none;
+			text-align: center;
+			background-color: @grey_light;
+		}
+
+		p {
+			margin: 0px;
+			line-height: normal;
+
+			&.closed {
+				color: @ma_red;
+				font-weight: 600;
+			}
 		}
 	}
 }

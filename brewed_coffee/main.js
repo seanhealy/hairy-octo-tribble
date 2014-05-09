@@ -7,7 +7,17 @@
   this.APP = angular.module('matersApp', angularModules);
 
   this.AppController = function($scope) {
-    return $scope.hideClosed = false;
+    $scope.hideClosed = false;
+    $scope.stateFilter = '';
+    $scope.clientFilterText = '';
+    $scope.keywordFilterText = '';
+    return $scope.$watch('hideClosed', function(value) {
+      if (value === true) {
+        return $scope.stateFilter = 'open';
+      } else {
+        return $scope.stateFilter = '';
+      }
+    });
   };
 
   this.MatterListController = function($scope) {

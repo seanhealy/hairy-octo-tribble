@@ -11,8 +11,8 @@
       {
         id: 1
         number: "00002 - Floyd, Zeppelin, & Sabbath"
-        description: "Ut enim ad minim veniam, quis nostrud exercitation. "
-        status: "open"
+        description: "Ut enim ad minim veniam, quis nostrud exercitation. Bobster."
+        status: "closed"
       }
     ]
   }
