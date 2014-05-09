@@ -1,0 +1,135 @@
+.animated (@time: 0.3s, @properties: all) {
+	-webkit-transition-property: @properties;
+	-webkit-transition-duration: @time;
+	-webkit-transition-timing-function: ease;
+
+	-moz-transition-property: all;
+	-moz-transition-duration: @time;
+	-moz-transition-timing-function: ease;
+}
+
+.clears {
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+}
+
+._gloss_gradient (@from, @stop1, @stop2, @to) {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to), color-stop(0.45, @stop1), color-stop(0.45, @stop2));
+	
+	background-image: -webkit-linear-gradient(top, @from, @stop1 45%, @stop2 45%, @to);
+	background-image:    -moz-linear-gradient(top, @from, @stop1 45%, @stop2 45%, @to);
+	background-image:     -ms-linear-gradient(top, @from, @stop1 45%, @stop2 45%, @to);
+	background-image:      -o-linear-gradient(top, @from, @stop1 45%, @stop2 45%, @to);
+	background-image:         linear-gradient(top, @from, @stop1 45%, @stop2 45%, @to);
+}
+
+._simple_gloss_gradient (@base_color) {
+	@from: lighten(@base_color, 9%);
+	@stop1: lighten(@base_color, 3%);
+	@stop2: darken(@base_color, 7%);
+	@to: darken(@base_color, 18%);
+	
+	
+	background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to), color-stop(0.45, @stop1), color-stop(0.45, @stop2));
+	
+	background-image: -webkit-linear-gradient(top, @from, @stop1 45%, @stop2 45%, @to);
+	background-image:    -moz-linear-gradient(top, @from, @stop1 45%, @stop2 45%, @to);
+	background-image:     -ms-linear-gradient(top, @from, @stop1 45%, @stop2 45%, @to);
+	background-image:      -o-linear-gradient(top, @from, @stop1 45%, @stop2 45%, @to);
+	background-image:         linear-gradient(top, @from, @stop1 45%, @stop2 45%, @to);
+}
+
+._simpler_gradient (@color) {
+	._simple_gradient(lighten(@color,7%), darken(@color,7%));
+}
+
+._simpler_gradient_inset (@color) {
+	._simple_gradient(darken(@color,7%), lighten(@color,7%));
+}
+
+._simple_gradient (@from, @to, @start: top) {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to));
+	
+	background-image: -webkit-linear-gradient(@start, @from, @to);
+	background-image:    -moz-linear-gradient(@start, @from, @to);
+	background-image:     -ms-linear-gradient(@start, @from, @to);
+	background-image:      -o-linear-gradient(@start, @from, @to);
+	background-image:         linear-gradient(@start, @from, @to);
+}
+
+._in_out_gradient (@base_color) {
+	@transparent_version: fade(@base_color, 0%);
+	
+	background-image: -webkit-linear-gradient(left, @transparent_version, @base_color 50%, @transparent_version);
+	background-image:    -moz-linear-gradient(left, @transparent_version, @base_color 50%, @transparent_version);
+	background-image:     -ms-linear-gradient(left, @transparent_version, @base_color 50%, @transparent_version);
+	background-image:      -o-linear-gradient(left, @transparent_version, @base_color 50%, @transparent_version);
+	background-image:         linear-gradient(left, @transparent_version, @base_color 50%, @transparent_version);
+}
+
+._radial_gradiant (@from, @to, @sizing: contain) {
+	background-image: -webkit-radial-gradient(center, ellipse @sizing, @from 0%, @to 100%);
+	background-image:    -moz-radial-gradient(center, ellipse @sizing, @from 0%, @to 100%);
+	background-image:     -ms-radial-gradient(center, ellipse @sizing, @from 0%, @to 100%);
+	background-image:      -o-radial-gradient(center, ellipse @sizing, @from 0%, @to 100%);
+	background-image:         radial-gradient(center, ellipse @sizing, @from 0%, @to 100%);
+}
+
+._border-radius (@params) {
+	-webkit-border-radius: @params;
+	-moz-border-radius: @params;
+	-ms-border-radius: @params;
+	-o-border-radius: @params;
+	border-radius: @params;
+}
+
+._border-left-radius (@params) {
+	border-top-left-radius: @params;
+	border-bottom-left-radius: @params;
+	
+	-webkit-top-left-border-radius: @params;
+	-webkit-bottom-left-border-radius: @params;
+	
+	-moz-border-radius-topleft: @params;
+	-moz-border-radius-bottomleft: @params;
+}
+
+._border-right-radius (@params) {
+	border-top-right-radius: @params;
+	border-bottom-right-radius: @params;
+	
+	-webkit-top-right-border-radius: @params;
+	-webkit-bottom-right-border-radius: @params;
+	
+	-moz-border-radius-topright: @params;
+	-moz-border-radius-bottomright: @params;
+}
+
+._border-top-radius (@params) {
+	border-top-left-radius: @params;
+	border-top-right-radius: @params;
+}
+
+._border-bottom-radius (@params) {
+	border-bottom-left-radius: @params;
+	border-bottom-right-radius: @params;
+}
+
+._transform (@params) {
+	-webkit-transform: @params;
+	-moz-transform: @params;
+	-ms-transform: @params;
+	-o-transform: @params;
+	transform: @params;
+}
+
+._box-shadow (@params) {
+	-webkit-box-shadow: @params;
+	-moz-box-shadow: @params;
+	-ms-box-shadow: @params;
+	-o-box-shadow: @params;
+	box-shadow: @params; 
+}

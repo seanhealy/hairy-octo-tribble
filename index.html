@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="matersApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;content charset=utf-8" />
+		<title>Maters</title>
+
+		<!-- Icons-->
+<!-- 		<link href="/icons/style.css" media="screen" rel="stylesheet" type="text/css" /> -->
+
+		<!-- Style-->
+		<link href="/less/main.less" rel="stylesheet/less" type="text/css">
+		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.4.1/less.min.js"></script>
+
+		<!-- Libs-->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+
+		<!-- JS-->
+		<script src="/brewed_coffee/seedData.js"></script>
+		<script src="/brewed_coffee/main.js"></script>
+	</head>
+	<body ng-controller="AppController">
+		<div class="app_section">
+			<div class="sidebar list" ng-controller="MatterListController">
+				<h1 ng-repeat-start="clientData in matters">{{ clientData.client_name }}</h1>
+				<div class="item matter" ng-repeat-end ng-repeat="matter in clientData.matters">
+					<input type="checkbox">
+					{{ matter.number }}
+					<a class="actions" href="">^</a>
+				</div>
+			</div>
+			<div class="matter_view">
+				Matter <strike>Closed</strike>
+			</div>
+		</div>
+
+		<div class="header_view">
+			<div class="logo">Matters</div>
+			<input type="text" placeholder="Filter by client…">
+			<input type="text" placeholder="Filter by text…">
+			<label><input type="checkbox" ng-model="hideClosed"> Hide Closed</label>
+		</div>
+	</body>
+</html>

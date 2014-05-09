@@ -1,0 +1,165 @@
+@import "defaults";
+@import "common_mixins";
+
+body {
+	margin: 0px;
+	padding: 0px;
+
+	color: @near_black;
+	font-size: 15px;
+	.font_copy;
+
+	// background-image: url(/images/background.png);
+	background-size: 4px;
+
+	overflow: hidden;
+}
+
+@header_height: 45px;
+.header_view {
+	@height: @header_height;
+
+	position: relative;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: @height;
+
+	line-height: @height;
+
+	border-bottom: solid 1px darken(@ma_yellow, 15%);
+	.add_shadow_under;
+	._simpler_gradient(@ma_yellow);
+	-webkit-backface-visibility: hidden;
+
+	hr {
+		display: inline-block;
+		width: 1px;
+		height: 100%;
+
+		background-color: #f00;
+	}
+
+	a, .logo {
+		display: inline-block;
+		position: relative;
+		height: @height;
+
+		margin-left: @inner_gutter/2;
+		margin-right: @inner_gutter/2;
+
+		vertical-align: top;
+
+		font-size: 1.3em;
+
+		.animated;
+		outline: 0px;
+
+		&.logo {
+			@inset: @inner_gutter;
+
+			margin-left: 0px;
+			padding-left: @inset;
+			padding-right: @inset;
+
+			text-shadow: none;
+		}
+	}
+}
+
+.app_section {
+	position: absolute;
+	top: @header_height;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+
+	@sidebar_width: 350px;
+	.sidebar {
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		width: @sidebar_width;
+
+		.size_to_box;
+
+		border-right: solid 1px darken(@near_white, 5%);
+
+		background-color: @near_white;
+		background-size: 4px;
+
+
+	}
+
+	.matter_view {
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+
+		.size_to_box;
+
+		padding: @inner_gutter;
+	}
+
+	.sidebar ~ .matter_view {
+		left: @sidebar_width;
+	}
+}
+
+.list {
+	h1 {
+		margin: 0px;
+		margin-top: @inner_gutter;
+		margin-left: @inner_gutter;
+
+		font-size: 1.2em;
+
+		.font_title;
+	}
+
+	.item {
+		@height: 30px;
+		@highlight_color: fade(@near_black, 20%);
+
+		display: block;
+		position: relative;
+		height: @height;
+
+		padding: 0px;
+		padding-left: @inner_gutter;
+		padding-right: @inner_gutter;
+
+		margin-top: 2px;
+		margin-bottom: 2px;
+
+		color: inherit;
+		text-decoration: none;
+		font-weight: 100;
+		line-height: @height;
+
+		border-top: solid 1px transparent;
+		border-bottom: solid 1px transparent;
+
+		&:after {
+			content: "";
+			float: right;
+			opacity: 0;
+		}
+
+		&:hover {
+			border-color: fade(@highlight_color, 7%);
+			background-color: fade(@highlight_color, 7%);
+		}
+
+		&.active {
+			border-color: @highlight_color;
+			background-color: @highlight_color;
+
+			&:after { opacity: 1; }
+		}
+	}
+}
+
