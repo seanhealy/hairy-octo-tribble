@@ -65,6 +65,10 @@ body {
 			text-shadow: none;
 		}
 	}
+
+	input {
+		line-height: 20px;
+	}
 }
 
 .app_section {
@@ -114,7 +118,7 @@ body {
 }
 
 .list {
-	overflow: auto;
+	overflow-y: scroll;
 
 	h1 {
 		margin: 0px;
@@ -180,11 +184,12 @@ body {
 			&:after { opacity: 1; }
 		}
 
-		@size: @height - 10;
-		input, a {
+		@size: 16px;
+		input, .dropdown {
+			display: block;
 			position: absolute;
-			top: 5px;
-			left: @inner_gutter;
+			top: 9px;
+			left: 7px;
 			height: @size;
 
 			line-height: @size;
@@ -194,14 +199,21 @@ body {
 
 		}
 
-		a {
-			left: auto;
-			right: @inner_gutter;
+		.dropdown {
+			top: @size + 9px;
+			left: 5px;
 			width: @size;
+			height: @size;
 
-			text-decoration: none;
-			text-align: center;
-			background-color: @grey_light;
+
+			a.actions {
+				display: block;
+				height: @size;
+				text-decoration: none;
+
+				background-image: url(/images/options.png);
+				background-size: contain;
+			}
 		}
 
 		p {

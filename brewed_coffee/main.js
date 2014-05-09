@@ -2,7 +2,7 @@
 (function() {
   var angularModules;
 
-  angularModules = [];
+  angularModules = ['ui.bootstrap'];
 
   this.APP = angular.module('matersApp', angularModules);
 
@@ -28,6 +28,28 @@
 
     $scope.clients = _seedData;
     $scope.selectAll = false;
+    $scope.closeMatter = function(matter, $event) {
+      $event.stopPropagation();
+      return matter.status = 'closed';
+    };
+    $scope.openMatter = function(matter, $event) {
+      $event.stopPropagation();
+      return matter.status = 'open';
+    };
+    $scope.deleteMatter = function(matter, $event) {
+      var client, _i, _len, _ref, _results;
+
+      $event.stopPropagation();
+      _ref = $scope.clients;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        client = _ref[_i];
+        _results.push(client.matters.remove({
+          id: matter.id
+        }));
+      }
+      return _results;
+    };
     $scope.$watch('selectAll', function(value) {
       return setSelectAllState(value);
     });

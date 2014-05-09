@@ -8,13 +8,17 @@
 <!-- 		<link href="/icons/style.css" media="screen" rel="stylesheet" type="text/css" /> -->
 
 		<!-- Style-->
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
 		<link href="/less/main.less" rel="stylesheet/less" type="text/css">
 		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.4.1/less.min.js"></script>
 
 		<!-- Libs-->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/sugar/1.4.1/sugar-full.min.js"></script>
 
 		<!-- JS-->
+		<script src="/vendor/ui-bootstrap-tpls-0.11.0.min.js"></script>
 		<script src="/brewed_coffee/seedData.js"></script>
 		<script src="/brewed_coffee/main.js"></script>
 	</head>
@@ -43,7 +47,27 @@
 					<p class="closed" ng-if="matter.status == 'closed'">Closed</p>
 					<p>{{ matter.description }}</p>
 					<input type="checkbox" ng-model="matter.selected" ng-click="$event.stopPropagation()">
-					<a class="actions" href="">^</a>
+					<span class="dropdown">
+						<a class="actions" dropdown-toggle href ng-click="$event.stopPropagation()"></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a
+									href
+									dropdown-toggle
+									ng-show="matter.status == 'open'"
+									ng-click="closeMatter(matter, $event)"
+									>Close Matter</a></li>
+							<li><a
+									href
+									dropdown-toggle
+									ng-show="matter.status == 'closed'"
+									ng-click="openMatter(matter, $event)"
+									>Re-Open Matter</a></li>
+							<li><a
+									href
+									ng-click="deleteMatter(matter, $event)"
+									>Delete Matter</a></li>
+						</ul>
+					</span>
 				</div>
 				<div class="empty" ng-repeat-end>No Matches</div>
 			</div>

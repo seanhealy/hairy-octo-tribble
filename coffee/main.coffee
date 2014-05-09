@@ -1,5 +1,5 @@
 angularModules = [
-
+    'ui.bootstrap'
 ]
 
 @APP = angular.module('matersApp', angularModules)
@@ -24,6 +24,19 @@ angularModules = [
 @MatterListController = ($scope) ->
     $scope.clients = _seedData
     $scope.selectAll = no
+
+    $scope.closeMatter = (matter, $event) ->
+        $event.stopPropagation()
+        matter.status = 'closed'
+
+    $scope.openMatter = (matter, $event) ->
+        $event.stopPropagation()
+        matter.status = 'open'
+
+    $scope.deleteMatter = (matter, $event) ->
+        $event.stopPropagation()
+        for client in $scope.clients
+            client.matters.remove {id: matter.id}
 
     $scope.$watch 'selectAll', (value) ->
         setSelectAllState value
